@@ -12,15 +12,18 @@
         <h1>AngularFundamentals</h1>
         <h2>{{'Hello from AngularJS'}}</h2>
         <pre>{{appName}}</pre>
+        <pre>The Current Date is:{{currentDate}}</pre>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript">
         var helloWorldApp = angular.module('helloWorldApp', []);
+        helloWorldApp.constant('myConfig', {applicationName:'My Angular JS App'});
         helloWorldApp.controller('firstController', [
-            '$scope',
-            function($scope){
-                $scope.appName = 'An App Name';
+            '$scope', 'myConfig',
+            function($scope, myConfig){
+                $scope.appName = myConfig.applicationName;
+                $scope.currentDate = new Date();
             }
         ]);
     </script>
